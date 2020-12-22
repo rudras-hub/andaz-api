@@ -1,0 +1,122 @@
+swagger: "2.0"
+info:
+  title: "Andaz Apna Apna API"
+  description: "API to get iconic dialogues of the cult hindi movie [Andaz Apna Apna](https://en.wikipedia.org/wiki/Andaz_Apna_Apna)."
+  version: "1.0.0-alpha"
+host: "api.andazapnaapna.io"
+basePath: "/v1"
+schemes:
+  - "http"
+  - "https"
+tags:
+  - name: "characters"
+    description: "Character of the movie."
+  - name: "dialogue"
+    description: "Iconic dialogues of the movie."
+paths:
+  /characters:
+    get:
+      tags:
+        - "characters"
+      summary: "Return all character of the movie."
+      description: "Get all character of Andaz Apna Apna movie."
+      operationId: "getCharacters"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Character"
+  /dialogue/random:
+    get:
+      tags:
+        - "dialogue"
+      summary: "Returns a random dialogue of the movie."
+      operationId: "getDialogueRandom"
+      produces:
+        - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Successful operation."
+          schema:
+            $ref: "#/definitions/Dialogue"
+  /dialogue/random/byCharacter/{characterName}:
+    get:
+      tags:
+        - "dialogue"
+      summary: "Returns a random dialogue of the given character of the movie."
+      operationId: "getDialogueRandomByCharacter"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "characterName"
+          in: "path"
+          description: "Name of chanracter whose dialogue is returned."
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Successful operation."
+          schema:
+            type: "string"
+        "400":
+          description: "Invalid name supplied."
+        "404":
+          description: "Character name not found."
+  /dialogue/character/{characterName}:
+    get:
+      tags:
+        - "dialogue"
+      summary: " Retuns all available dialogues of the given character of the movie."
+      operationId: "getDialoguesByCharacter"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "characterName"
+          in: "path"
+          description: "Name of chanracter whose dialogues are returned."
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Successful operation."
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        "400":
+          description: "Invalid name supplied"
+        "404":
+          description: "Character name not found"
+definitions:
+  Character:
+    type: "object"
+    properties:
+      Id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      Name:
+        type: "string"
+        example: "Ram Gopal Bajaj"
+      Alias:
+        type: "string"
+        example: "Teja"
+  Dialogue:
+    type: "object"
+    properties:
+      CharacterName:
+        type: "string"
+        example: "Ram Gopal Bajaj"
+      Quote:
+        type: "string"
+        example: "Teja mai hoon, mark idhar hai!"
