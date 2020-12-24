@@ -101,10 +101,6 @@ definitions:
   Character:
     type: "object"
     properties:
-      Id:
-        type: "integer"
-        format: "int64"
-        example: 1
       Name:
         type: "string"
         example: "Ram Gopal Bajaj"

@@ -18,9 +18,6 @@ type Character struct {
 	// alias
 	Alias string `json:"Alias,omitempty"`
 
-	// Id
-	ID int64 `json:"Id,omitempty"`
-
 	// name
 	Name string `json:"Name,omitempty"`
 }
