@@ -10,9 +10,9 @@ type DialogueWithIDNotFoundError struct{
 	id int64
 }
 
-// CharacterWithIDNotFoundError when a Character with required Id is not found in data repository.
-type CharacterWithIDNotFoundError struct{
-	id int64
+// CharacterWithNameNotFoundError when a Character with required Id is not found in data repository.
+type CharacterWithNameNotFoundError struct{
+	name string
 }
 
 // NewDialogueWithIDNotFoundError creates a new instance of DialogueWithIDNotFoundError.
@@ -20,9 +20,9 @@ func NewDialogueWithIDNotFoundError(id int64)*DialogueWithIDNotFoundError {
 	return &DialogueWithIDNotFoundError{id: id}
 }
 
-// NewCharacterWithIDNotFoundError creates a new instance of CharacterWithIDNotFoundError.
-func NewCharacterWithIDNotFoundError(id int64)*CharacterWithIDNotFoundError {
-	return &CharacterWithIDNotFoundError{id: id}
+// NewCharacterWithNameNotFoundError creates a new instance of CharacterWithNameNotFoundError.
+func NewCharacterWithNameNotFoundError(name string)*CharacterWithNameNotFoundError {
+	return &CharacterWithNameNotFoundError{name: name}
 }
 
 // Error implements builtin.error interface on DialogueWithIDNotFoundError.
@@ -30,7 +30,7 @@ func (d *DialogueWithIDNotFoundError) Error() string{
 	return fmt.Sprintf("dialogue with ID = %v not found", d.id)
 }
 
-// Error implements builtin.error interface on CharacterWithIDNotFoundError.
-func (c *CharacterWithIDNotFoundError) Error() string{
-	return fmt.Sprintf("character with ID = %v not found", c.id)
+// Error implements builtin.error interface on CharacterWithNameNotFoundError.
+func (c *CharacterWithNameNotFoundError) Error() string{
+	return fmt.Sprintf("character with name = %v not found", c.name)
 }

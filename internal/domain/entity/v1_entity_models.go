@@ -4,7 +4,6 @@ import "fmt"
 
 // Character struct defines a character of the movie.
 type Character struct{
-	Id int64
 	Name string
 	Alias string
 }
