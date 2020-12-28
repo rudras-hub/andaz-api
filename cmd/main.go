@@ -2,18 +2,19 @@ package main
 
 import (
 	"andaz-api/internal/database/adapter"
-	"fmt"
+	"andaz-api/internal/logging"
 )
 
 func main(){
+	l := logging.NewStdLoggerExtension()
 	c := adapter.GetCharacterRepositoryInstance()
 	characterEntities, err := c.RetrieveAll()
 	if err != nil{
-		fmt.Println("Error = ", err)
+		l.Errorf("error = %v", err)
 		return
 	}
 
 	for _, char := range  characterEntities{
-		fmt.Println("Name = ", char.Name, " Alias = ", char.Alias)
+		l.Infof("Name = %v, Alias = %v", char.Name, char.Alias)
 	}
 }
