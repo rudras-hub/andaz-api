@@ -20,7 +20,7 @@ func NewCharacterHandler(log entity.Logger, db entity.CharacterRepositoryReader)
 
 // ListAll handles the http method to list all available movie characters.
 func (c *CharacterHandler) ListAll(rw http.ResponseWriter, r *http.Request){
-	c.logger.Debugf("get all characters")
+	c.logger.Debug("get all characters")
 	rw.Header().Add(contentType, applicationJson)
 
 	characterEntities, err := c.repository.RetrieveAll()
