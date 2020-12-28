@@ -2,19 +2,65 @@ package main
 
 import (
 	"andaz-api/internal/database/adapter"
+	"andaz-api/internal/domain/usecase"
 	"andaz-api/internal/logging"
+	"context"
+	"github.com/gorilla/mux"
+	"net/http"
+	"os"
+	"os/signal"
+	"time"
 )
 
+const(
+	serviceName = "[andaz-api] "
+	serviceAddr = ":9090"
+	characterGetPath = "/characters"
+	readTimeoutSec = 5
+	writeTimeoutSec = 10
+	IdleTimeoutSec = 120
+	shutDownWaitTimeSec = 30
+)
 func main(){
-	l := logging.NewStdLoggerExtension()
-	c := adapter.GetCharacterRepositoryInstance()
-	characterEntities, err := c.RetrieveAll()
-	if err != nil{
-		l.Errorf("error = %v", err)
-		return
+	logExt := logging.NewStdLoggerExtension(serviceName)
+	router := mux.NewRouter()
+
+	charRepo := adapter.GetCharacterRepositoryInstance()
+	charHandler := usecase.NewCharacterHandler(logExt, charRepo)
+
+	getRouter := router.Methods(http.MethodGet).Subrouter()
+	getRouter.HandleFunc(characterGetPath, charHandler.ListAll)
+
+	s := http.Server{
+		Addr:         serviceAddr,       // configure the bind address
+		Handler:      router,            // set the default handler
+		ErrorLog:     logExt.Logger,     // set the logger for the server
+		ReadTimeout:  readTimeoutSec * time.Second,   // max time to read request from the client
+		WriteTimeout: writeTimeoutSec * time.Second,  // max time to write response to the client
+		IdleTimeout:  IdleTimeoutSec * time.Second, // max time for connections using TCP Keep-Alive
 	}
 
-	for _, char := range  characterEntities{
-		l.Infof("Name = %v, Alias = %v", char.Name, char.Alias)
-	}
+	// start the server
+	go func() {
+		logExt.Infof("Starting server on port %v", serviceAddr)
+
+		err := s.ListenAndServe()
+		if err != nil {
+			logExt.Errorf("Error starting server: %v", err)
+			os.Exit(1)
+		}
+	}()
+
+	// trap sigterm or interupt and gracefully shutdown the server
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt)
+	signal.Notify(c, os.Kill)
+
+	// Block until a signal is received.
+	sig := <-c
+	logExt.Infof("Got signal:", sig)
+
+	// gracefully shutdown the server, waiting max 30 seconds for current operations to complete
+	ctx, _ := context.WithTimeout(context.Background(), shutDownWaitTimeSec*time.Second)
+	s.Shutdown(ctx)
 }
