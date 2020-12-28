@@ -58,7 +58,7 @@ func main(){
 
 	// Block until a signal is received.
 	sig := <-c
-	logExt.Infof("Got signal:", sig)
+	logExt.Infof("Got signal: %v", sig)
 
 	// gracefully shutdown the server, waiting max 30 seconds for current operations to complete
 	ctx, _ := context.WithTimeout(context.Background(), shutDownWaitTimeSec*time.Second)
