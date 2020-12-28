@@ -1,12 +1,12 @@
 package main
 
 import (
-	"andaz-api/internal/data/handler"
+	"andaz-api/internal/database/adapter"
 	"fmt"
 )
 
 func main(){
-	c := handler.GetCharacterRepositoryInstance()
+	c := adapter.GetCharacterRepositoryInstance()
 	characterEntities, err := c.RetrieveAll()
 	if err != nil{
 		fmt.Println("Error = ", err)

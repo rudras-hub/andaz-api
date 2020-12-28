@@ -1,4 +1,4 @@
-package handler
+package adapter
 
 const(
 
@@ -55,10 +55,10 @@ func GetAllNames()[]string{
 // GetNameVsAliasMap gets a map of character true names and their alias names.
 func GetNameVsAliasMap() map[string]string{
 	return map[string]string{
-		AmarManohar: AmarManoharAlias,
-		PremBhopali: PremBhopaliAlias,
-		RaveenBajaj: RaveenaBajajAlias,
-		Karishma: KarishmaAlias,
+		AmarManohar:   AmarManoharAlias,
+		PremBhopali:   PremBhopaliAlias,
+		RaveenBajaj:   RaveenaBajajAlias,
+		Karishma:      KarishmaAlias,
 		RamGopalBajaj: RamGopalBajajAlias,
 	}
 }

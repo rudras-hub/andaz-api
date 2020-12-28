@@ -1,4 +1,4 @@
-package handler
+package adapter
 
 import (
 	"andaz-api/internal/domain/entity"
@@ -32,7 +32,7 @@ func GetCharacterRepositoryInstance() *CharacterRepositoryMock {
 
 // initializeCharacterRepoMock initializes the mock character repository.
 // Called once in get instance method.
-func initializeCharacterRepoMock() *CharacterRepositoryMock{
+func initializeCharacterRepoMock() *CharacterRepositoryMock {
 	mockRepo := &CharacterRepositoryMock{}
 	charNames := GetAllNames()
 	charAliases := GetNameVsAliasMap()
