@@ -7,15 +7,21 @@ import (
 	"net/http"
 )
 
+// ErrorType defines custom type of error.
+type ErrorType string
+
+// ErrorFormat with a custom error message.
+type ErrorFormat struct{
+	Type ErrorType `json:"type"`
+	Message string `json:"message"`
+}
+
 const(
 	contentType = "Content-Type"
 	applicationJson = "application/json"
+	GenericErrorType ErrorType = "Generic Error"
+	ValidationErrorType ErrorType = "Validation Error"
 )
-
-// GenericError with a custom error message.
-type GenericError struct{
-	Message string `json:"message"`
-}
 
 // MarshallToJson marshalls given type to json and adds to the given io.Writer stream.
 func MarshallToJson(v interface{}, w io.Writer) error{
@@ -29,9 +35,16 @@ func UnmarshallFromJson(v interface{}, r io.Reader) error{
 	return jDecoder.Decode(v)
 }
 
-// respondWithInternalServerError logs an error and returns to  http.StatusInternalServerError to the stream.
+// respondWithInternalServerError logs an error and returns http.StatusInternalServerError to the stream.
 func respondWithInternalServerError(log entity.Logger, rw http.ResponseWriter, errorMessage string){
-	log.Errorf(errorMessage)
+	log.Errorf("Internal Server Error %v", errorMessage)
 	rw.WriteHeader(http.StatusInternalServerError)
-	MarshallToJson(&GenericError{Message: errorMessage}, rw)
+	MarshallToJson(&ErrorFormat{Type: GenericErrorType, Message: errorMessage}, rw)
+}
+
+// respondWithValidationError logs an error and returns http.StatusBadRequest to the stream.
+func respondWithValidationError(log entity.Logger, rw http.ResponseWriter, errorMessage string){
+	log.Errorf("Validation Error: %v", errorMessage)
+	rw.WriteHeader(http.StatusBadRequest)
+	MarshallToJson(&ErrorFormat{Type: ValidationErrorType, Message: errorMessage}, rw)
 }
