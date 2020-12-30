@@ -6,20 +6,20 @@ import (
 	"net/http"
 )
 
-// CharacterHandler handles http requests for Characters.
-type CharacterHandler struct{
+// CharacterGetHandler handles http requests for Characters.
+type CharacterGetHandler struct{
 	logger entity.Logger
 	repository entity.CharacterRepositoryReader
 }
 
-// NewCharacterHandler returns a new instance of CharacterHandler with the given
+// NewCharacterGetHandler returns a new instance of CharacterGetHandler with the given
 // entity.Logger and entity.CharacterRepositoryReader input interfaces.
-func NewCharacterHandler(log entity.Logger, db entity.CharacterRepositoryReader) *CharacterHandler{
-	return &CharacterHandler{logger: log, repository: db}
+func NewCharacterGetHandler(log entity.Logger, db entity.CharacterRepositoryReader) *CharacterGetHandler {
+	return &CharacterGetHandler{logger: log, repository: db}
 }
 
 // ListAll handles the http method to list all available movie characters.
-func (c *CharacterHandler) ListAll(rw http.ResponseWriter, r *http.Request){
+func (c *CharacterGetHandler) ListAll(rw http.ResponseWriter, r *http.Request){
 	c.logger.Debug("get all characters")
 	rw.Header().Add(contentType, applicationJson)
 
