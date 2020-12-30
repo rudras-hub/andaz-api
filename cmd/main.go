@@ -26,10 +26,10 @@ func main(){
 	router := mux.NewRouter()
 
 	charRepo := adapter.GetCharacterRepositoryInstance()
-	charHandler := usecase.NewCharacterHandler(logExt, charRepo)
+	charGetHandler := usecase.NewCharacterGetHandler(logExt, charRepo)
 
 	getRouter := router.Methods(http.MethodGet).Subrouter()
-	getRouter.HandleFunc(characterGetPath, charHandler.ListAll)
+	getRouter.HandleFunc(characterGetPath, charGetHandler.ListAll)
 
 	s := http.Server{
 		Addr:         serviceAddr,       // configure the bind address
