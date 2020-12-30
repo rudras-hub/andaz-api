@@ -59,7 +59,7 @@ type GetDialogueRandomByCharacterOK struct {
 }
 
 func (o *GetDialogueRandomByCharacterOK) Error() string {
-	return fmt.Sprintf("[GET /dialogue/random/byCharacter/{characterName}][%d] getDialogueRandomByCharacterOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dialogue/random/byCharacter][%d] getDialogueRandomByCharacterOK  %+v", 200, o.Payload)
 }
 
 func (o *GetDialogueRandomByCharacterOK) GetPayload() string {
@@ -89,7 +89,7 @@ type GetDialogueRandomByCharacterBadRequest struct {
 }
 
 func (o *GetDialogueRandomByCharacterBadRequest) Error() string {
-	return fmt.Sprintf("[GET /dialogue/random/byCharacter/{characterName}][%d] getDialogueRandomByCharacterBadRequest ", 400)
+	return fmt.Sprintf("[GET /dialogue/random/byCharacter][%d] getDialogueRandomByCharacterBadRequest ", 400)
 }
 
 func (o *GetDialogueRandomByCharacterBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -110,7 +110,7 @@ type GetDialogueRandomByCharacterNotFound struct {
 }
 
 func (o *GetDialogueRandomByCharacterNotFound) Error() string {
-	return fmt.Sprintf("[GET /dialogue/random/byCharacter/{characterName}][%d] getDialogueRandomByCharacterNotFound ", 404)
+	return fmt.Sprintf("[GET /dialogue/random/byCharacter][%d] getDialogueRandomByCharacterNotFound ", 404)
 }
 
 func (o *GetDialogueRandomByCharacterNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -82,7 +82,7 @@ func (a *Client) GetDialogueRandomByCharacter(params *GetDialogueRandomByCharact
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDialogueRandomByCharacter",
 		Method:             "GET",
-		PathPattern:        "/dialogue/random/byCharacter/{characterName}",
+		PathPattern:        "/dialogue/random/byCharacter",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},
@@ -116,7 +116,7 @@ func (a *Client) GetDialoguesByCharacter(params *GetDialoguesByCharacterParams) 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDialoguesByCharacter",
 		Method:             "GET",
-		PathPattern:        "/dialogue/character/{characterName}",
+		PathPattern:        "/dialogues/character",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"http", "https"},

@@ -59,7 +59,7 @@ type GetDialoguesByCharacterOK struct {
 }
 
 func (o *GetDialoguesByCharacterOK) Error() string {
-	return fmt.Sprintf("[GET /dialogue/character/{characterName}][%d] getDialoguesByCharacterOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[GET /dialogues/character][%d] getDialoguesByCharacterOK  %+v", 200, o.Payload)
 }
 
 func (o *GetDialoguesByCharacterOK) GetPayload() []string {
@@ -89,7 +89,7 @@ type GetDialoguesByCharacterBadRequest struct {
 }
 
 func (o *GetDialoguesByCharacterBadRequest) Error() string {
-	return fmt.Sprintf("[GET /dialogue/character/{characterName}][%d] getDialoguesByCharacterBadRequest ", 400)
+	return fmt.Sprintf("[GET /dialogues/character][%d] getDialoguesByCharacterBadRequest ", 400)
 }
 
 func (o *GetDialoguesByCharacterBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -110,7 +110,7 @@ type GetDialoguesByCharacterNotFound struct {
 }
 
 func (o *GetDialoguesByCharacterNotFound) Error() string {
-	return fmt.Sprintf("[GET /dialogue/character/{characterName}][%d] getDialoguesByCharacterNotFound ", 404)
+	return fmt.Sprintf("[GET /dialogues/character][%d] getDialoguesByCharacterNotFound ", 404)
 }
 
 func (o *GetDialoguesByCharacterNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -45,7 +45,7 @@ paths:
           description: "Successful operation."
           schema:
             $ref: "#/definitions/Dialogue"
-  /dialogue/random/byCharacter/{characterName}:
+  /dialogue/random/byCharacter:
     get:
       tags:
         - "dialogue"
@@ -57,7 +57,7 @@ paths:
         - "application/json"
       parameters:
         - name: "characterName"
-          in: "path"
+          in: "query"
           description: "Name of chanracter whose dialogue is returned."
           required: true
           type: "string"
@@ -70,7 +70,7 @@ paths:
           description: "Invalid name supplied."
         "404":
           description: "Character name not found."
-  /dialogue/character/{characterName}:
+  /dialogues/character:
     get:
       tags:
         - "dialogue"
@@ -82,7 +82,7 @@ paths:
         - "application/json"
       parameters:
         - name: "characterName"
-          in: "path"
+          in: "query"
           description: "Name of chanracter whose dialogues are returned."
           required: true
           type: "string"

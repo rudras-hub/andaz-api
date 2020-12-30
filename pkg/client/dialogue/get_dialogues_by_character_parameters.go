@@ -123,9 +123,13 @@ func (o *GetDialoguesByCharacterParams) WriteToRequest(r runtime.ClientRequest, 
 	}
 	var res []error
 
-	// path param characterName
-	if err := r.SetPathParam("characterName", o.CharacterName); err != nil {
-		return err
+	// query param characterName
+	qrCharacterName := o.CharacterName
+	qCharacterName := qrCharacterName
+	if qCharacterName != "" {
+		if err := r.SetQueryParam("characterName", qCharacterName); err != nil {
+			return err
+		}
 	}
 
 	if len(res) > 0 {
