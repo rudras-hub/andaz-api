@@ -1,7 +1,7 @@
 package adapter
 
 import (
-	"andaz-api/internal/domain/entity"
+	"andaz-api/internal/entity"
 	"sync"
 )
 

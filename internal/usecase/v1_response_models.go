@@ -1,7 +1,7 @@
 package usecase
 
 import (
-	"andaz-api/internal/domain/entity"
+	"andaz-api/internal/entity"
 )
 
 // CharacterResponseModel struct representing movie character response model.
