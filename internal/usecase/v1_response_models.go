@@ -17,7 +17,7 @@ type DialogueResponseModel struct {
 }
 
 // CharacterEntityToResponseModel converts entity.Character type to CharacterResponseModel.
-func CharacterEntityToResponseModel(characterEntityModel *entity.Character)*CharacterResponseModel{
+func CharacterEntityToResponseModel(characterEntityModel *entity.Character)*CharacterResponseModel {
 	return &CharacterResponseModel{
 		Name: characterEntityModel.Name,
 		Alias: characterEntityModel.Alias,
@@ -25,7 +25,7 @@ func CharacterEntityToResponseModel(characterEntityModel *entity.Character)*Char
 }
 
 // DialogueEntityToResponseModel converts entity.Dialogue to DialogueResponseModel
-func DialogueEntityToResponseModel(dialogueEntityModel *entity.Dialogue) *DialogueResponseModel{
+func DialogueEntityToResponseModel(dialogueEntityModel *entity.Dialogue) *DialogueResponseModel {
 	return &DialogueResponseModel{
 		CharacterName: dialogueEntityModel.Character.Name,
 		Quote: dialogueEntityModel.Quote,

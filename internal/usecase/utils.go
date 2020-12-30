@@ -12,14 +12,14 @@ type ErrorType string
 
 // ErrorFormat with a custom error message.
 type ErrorFormat struct{
-	Type ErrorType `json:"type"`
-	Message string `json:"message"`
+	Type    ErrorType `json:"type"`
+	Message string    `json:"message"`
 }
 
 const(
-	contentType = "Content-Type"
-	applicationJson = "application/json"
-	GenericErrorType ErrorType = "Generic Error"
+	contentType                   = "Content-Type"
+	applicationJson               = "application/json"
+	GenericErrorType    ErrorType = "Generic Error"
 	ValidationErrorType ErrorType = "Validation Error"
 )
 

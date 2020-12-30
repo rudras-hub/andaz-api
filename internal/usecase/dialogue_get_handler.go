@@ -23,7 +23,7 @@ type DialogueGetHandler struct{
 
 // NewDialogueGetHandler returns a new instance of DialogueGetHandler with the given
 // entity.Logger, entity.CharacterRepositoryReader and entity.DialogueRepositoryReader input interfaces.
-func NewDialogueGetHandler(log entity.Logger, db entity.DialogueRepositoryReader) *DialogueGetHandler{
+func NewDialogueGetHandler(log entity.Logger, db entity.DialogueRepositoryReader) *DialogueGetHandler {
 	return &DialogueGetHandler{logger: log, dialogueRepository: db}
 }
 // ValidateCharNameMiddleware is the middleware function to verify if the name in request

@@ -2,8 +2,8 @@ package main
 
 import (
 	"andaz-api/internal/database/adapter"
-	"andaz-api/internal/domain/usecase"
 	"andaz-api/internal/logging"
+	"andaz-api/internal/usecase"
 	"context"
 	"github.com/gorilla/mux"
 	"net/http"
