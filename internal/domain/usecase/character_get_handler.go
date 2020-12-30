@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-// CharacterGetHandler handles http requests for Characters.
+// CharacterGetHandler handles http GET requests for entity.Character(s).
 type CharacterGetHandler struct{
 	logger entity.Logger
 	repository entity.CharacterRepositoryReader
